@@ -1,6 +1,17 @@
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
+import {
+  Geist,
+  Geist_Mono,
+  Instrument_Serif,
+  Rethink_Sans,
+  Space_Mono,
+  VT323,
+} from 'next/font/google';
 import './globals.css';
+import { ThemeProvider } from '@/components/theme-provider';
+import Header from '@/components/navigation/header';
+import Footer from '@/components/navigation/footer';
+import SmoothScroll from '@/components/smooth-scroll';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -10,6 +21,32 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: '--font-geist-mono',
   subsets: ['latin'],
+});
+
+const rethinkSans = Rethink_Sans({
+  variable: '--font-rethink-sans',
+  subsets: ['latin'],
+  display: 'swap',
+});
+
+const instrumentSerif = Instrument_Serif({
+  variable: '--font-instrument-serif',
+  subsets: ['latin'],
+  weight: ['400'],
+  display: 'swap',
+});
+
+const vt = VT323({
+  variable: '--font-vt',
+  subsets: ['latin'],
+  weight: ['400'],
+});
+
+const spaceMono = Space_Mono({
+  variable: '--font-space-mono',
+  subsets: ['latin'],
+  weight: ['400', '700'],
+  display: 'swap',
 });
 
 export const metadata: Metadata = {
@@ -23,8 +60,24 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>{children}</body>
+    <html lang="en" suppressHydrationWarning>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} ${rethinkSans.variable} ${instrumentSerif.variable} ${vt.variable} ${spaceMono.variable} font-[family-name:var(--font-rethink-sans)] antialiased`}
+      >
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <SmoothScroll>
+            <Header />
+
+            {children}
+            <Footer />
+          </SmoothScroll>
+        </ThemeProvider>
+      </body>
     </html>
   );
 }
