@@ -1,3 +1,4 @@
+import Clubs from '@/components/home/clubs';
 import ContactForm from '@/components/home/contactForm';
 import Image from 'next/image';
 
@@ -81,6 +82,7 @@ export default function Home() {
           </a>
         </footer>
       </div>
+      <Clubs />
     </>
   );
 }

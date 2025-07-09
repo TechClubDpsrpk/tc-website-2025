@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Cross, Menu, X, XIcon } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 
@@ -45,7 +45,7 @@ export default function MenuButtonWithOverlay() {
       {/* === Menu Button === */}
       <div
         onClick={() => setIsOpen(true)}
-        className="group relative flex cursor-pointer items-center gap-1 pr-2 font-[family-name:var(--font-space-mono)] text-sm transition-all duration-300 hover:text-[#fac924] md:pr-0"
+        className="group relative mr-2 flex cursor-pointer items-center gap-1 font-[family-name:var(--font-space-mono)] text-sm transition-all duration-300 hover:text-[#fac924] md:mr-0"
       >
         <Menu className="h-4 w-4" />
         <p>MENU</p>
@@ -65,12 +65,12 @@ export default function MenuButtonWithOverlay() {
           >
             {/* Close Button */}
             <div className="flex justify-end p-6">
-              <button
-                onClick={() => setIsOpen(false)}
-                className="group flex items-center gap-2 text-sm tracking-wide transition hover:text-[#fac924]"
-              >
-                <span className="border-b border-white group-hover:border-[#fac924]">CLOSE</span>
-                <X className="h-4 w-4" />
+              <button onClick={() => setIsOpen(false)} className="">
+                <div className="group relative flex cursor-pointer items-center gap-1 pr-2 font-[family-name:var(--font-space-mono)] text-sm transition-all duration-300 hover:text-[#fac924] md:pr-0">
+                  <XIcon className="h-4 w-4" />
+                  <p>CLOSE</p>
+                  <span className="absolute bottom-0 left-0 h-[1px] w-0 bg-[#fac924] transition-all duration-300 group-hover:w-full"></span>
+                </div>
               </button>
             </div>
 
