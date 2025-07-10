@@ -25,27 +25,26 @@ const Clubs = () => {
         style={{ x: xFast }}
         className="text-[12vw] font-bold whitespace-nowrap text-black uppercase italic"
       >
-        <span className="inline-block pr-16">
-          <LineShadowText>TECH FOR EVERYONE →</LineShadowText>
-        </span>
-        <span className="inline-block pr-16">MOVING IN THIS DIRECTION →</span>
-        <span className="inline-block pr-16">MOVING IN THIS DIRECTION →</span>
+        <span className="inline-block pr-16">TECH FOR EVERYONE →</span>
+        <span className="inline-block pr-16"> TECH FOR EVERYONE →</span>
+        <span className="inline-block pr-16"> TECH FOR EVERYONE →</span>
       </motion.div>
 
       {/* Spacer */}
-      <div className="my-20" />
+      <div className="my-10" />
+
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+        <div className="flex items-center justify-center text-left text-2xl text-black">
+          <p>The tech club is the premier club</p>
+        </div>
+        <div className="flex items-center justify-center">
+          <LineShadowText className="text-4xl font-bold text-black" shadowColor="#dfe1d7">
+            Hello
+          </LineShadowText>
+        </div>
+      </div>
 
       {/* Strip 2 - Scrolls Right (reverse) */}
-      <motion.div
-        style={{ x: xSlow }}
-        className="text-[12vw] font-bold whitespace-nowrap text-black uppercase"
-      >
-        <span className="inline-block pr-16">← BACKWARDS TOO</span>
-        <span className="inline-block pr-16">← BACKWARDS TOO</span>
-        <span className="inline-block pr-16">← BACKWARDS TOO</span>
-        <span className="inline-block pr-16">← BACKWARDS TOO</span>
-        <span className="inline-block pr-16">← BACKWARDS TOO</span>
-      </motion.div>
     </section>
   );
 };
