@@ -1,34 +1,44 @@
 'use client';
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
-import React from 'react';
 import EmblaCarousel from './hero/EmblaCarousel';
 import { EmblaOptionsType } from 'embla-carousel';
-import { motion } from 'framer-motion'; // 🆕 Import motion
 import './hero/embla.css';
 
-const OPTIONS: EmblaOptionsType = { dragFree: true, loop: true };
+const OPTIONS: EmblaOptionsType = { loop: true };
 const SLIDE_COUNT = 5;
 const SLIDES = Array.from(Array(SLIDE_COUNT).keys());
 
 const Hero = () => {
+  const containerRef = useRef(null);
+
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ['start end', 'end start'],
+  });
+
+  // Slower scroll effect
+  const ySlow = useTransform(scrollYProgress, [1, 0], ['30%', '-30%']);
+
   return (
-    <div className="flex min-h-[calc(100vh-128px)] flex-col">
-      {/* Spacer */}
+    <div className="flex min-h-[calc(100vh-128px)] flex-col" ref={containerRef}>
       <div className="h-20" />
 
-      {/* Upper section with motion */}
+      {/* 🔁 Nested motion divs for fade-in + scroll parallax */}
       <motion.div
-        className="flex flex-grow items-center justify-center"
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
+        initial={{ opacity: 0, filter: 'blur(12px)', y: 50 }}
+        animate={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
         transition={{ duration: 0.8, ease: 'easeOut' }}
+        className="flex flex-grow items-center justify-center"
       >
-        <EmblaCarousel slides={SLIDES} options={OPTIONS} />
+        <motion.div style={{ y: ySlow }} className="w-full">
+          <EmblaCarousel slides={SLIDES} options={OPTIONS} />
+        </motion.div>
       </motion.div>
 
-      {/* CTA section */}
-      <div className="flex flex-shrink-0 flex-col items-center justify-between gap-4 bg-zinc-800 p-8 md:flex-row">
+      {/* 📦 CTA section */}
+      <div className="z-10 flex flex-shrink-0 flex-col items-center justify-between gap-4 bg-zinc-800 p-8 md:flex-row">
         <p className="font-semibold text-white md:max-w-md">
           Welcome to our school tech club – where we pretend to fix things we broke ourselves. It's
           chaotic brilliance at its finest.
@@ -38,8 +48,6 @@ const Hero = () => {
           <span className="relative z-10 flex items-center gap-2">
             JOIN US <ArrowRight width={16} height={16} />
           </span>
-
-          <span className="absolute top-0 left-0 h-full w-0 bg-black transition-all duration-500 ease-in-out group-hover:w-full" />
         </button>
       </div>
     </div>
