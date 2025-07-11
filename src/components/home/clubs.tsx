@@ -47,7 +47,7 @@ const Clubs = () => {
         {/* === Main Grid === */}
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
           {/* === Left Text === */}
-          <div className="text-md flex items-center justify-center text-black">
+          <div className="text-md flex items-center justify-center text-zinc-700">
             <p className="max-w-xl leading-5">
               The Tech Club isn't just about code. It's a canvas for innovation, design, and
               creation. Across hardware, AI, gaming, and more — we explore tech with a story, a
