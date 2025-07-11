@@ -8,7 +8,23 @@ import './hero/embla.css';
 
 const OPTIONS: EmblaOptionsType = { loop: true };
 const SLIDE_COUNT = 5;
-const SLIDES = Array.from(Array(SLIDE_COUNT).keys());
+const SLIDES = [
+  {
+    image: 'https://picsum.photos/1920/1080?v=1',
+    text: 'We fix what we break.',
+    button: 'Join Us',
+  },
+  {
+    image: 'https://picsum.photos/1920/1080?v=7',
+    text: 'Chaos meets code.',
+    button: 'Explore',
+  },
+  {
+    image: 'https://picsum.photos/1920/1080?v=5',
+    text: 'Infinite bugs, infinite passion.',
+    button: 'Learn More',
+  },
+];
 
 const Hero = () => {
   const containerRef = useRef(null);

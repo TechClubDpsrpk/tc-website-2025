@@ -16,7 +16,7 @@ const Header = () => {
         // How much of the blur is falloff. 0 means no falloff, 100 means the entire blur is falloff. Default is 100.
         falloffPercentage={100}
         // The tint applied to the blur. This can be any valid CSS color. Default is transparent.
-        tint="rgba(0, 0, 0, 0.1)"
+        tint="rgba(0, 0, 0, 0.6)"
         // You can pass any div props to the component. Useful for positioning.
         style={{
           position: 'fixed',
