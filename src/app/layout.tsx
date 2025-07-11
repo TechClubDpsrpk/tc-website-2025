@@ -67,7 +67,7 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${rethinkSans.variable} ${instrumentSerif.variable} ${vt.variable} ${spaceMono.variable} font-[family-name:var(--font-rethink-sans)] antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${rethinkSans.variable} ${instrumentSerif.variable} ${vt.variable} ${spaceMono.variable} bg-black font-[family-name:var(--font-rethink-sans)] antialiased`}
       >
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
           <SmoothCursor />

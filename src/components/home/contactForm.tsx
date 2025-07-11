@@ -30,7 +30,9 @@ const ContactForm = () => {
           </p>
         </div>
       </div>
-      <RetroGrid />
+      <div className="-z-10">
+        <RetroGrid />
+      </div>
     </div>
   );
 };

@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Rocket, Handshake, Book } from 'lucide-react';
 import { MagicCard } from '../magicui/magic-card';
 
@@ -31,58 +31,74 @@ const features = [
 ];
 
 const Intro = () => {
+  const [currentTime, setCurrentTime] = useState<string>(() => new Date().toLocaleString());
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTime(new Date().toLocaleString());
+    }, 1000); // update every second
+
+    return () => clearInterval(interval);
+  }, []);
   return (
-    <section className="min-h-screen bg-black px-6 pt-48 pb-32 text-white md:px-10">
-      <div className="mx-auto max-w-6xl space-y-10 md:px-6 lg:px-24">
-        <div className="flex flex-col space-y-4 md:space-y-6">
-          {/* Header + Tagline on same line */}
-          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between">
-            <h2 className="text-left text-5xl font-bold md:text-6xl">
-              We are{' '}
-              <span className="font-[family-name:var(--font-instrument-serif)] font-normal italic">
-                DPSTechies
-              </span>
-            </h2>
-            <p className="mt-2 font-[family-name:var(--font-vt)] text-sm text-white md:mt-0 md:text-base">
-              *masters of tech, apprentices in common sense*
+    <>
+      <div className="absolute flex w-full flex-row justify-between p-4 font-[family-name:var(--font-space-mono)] text-sm text-zinc-500">
+        <p>Est. 2015</p>
+        <span suppressHydrationWarning>{currentTime}</span>
+      </div>
+
+      <section className="min-h-screen bg-black px-6 pt-48 pb-32 text-white md:px-10">
+        <div className="mx-auto max-w-6xl space-y-10 md:px-6 lg:px-24">
+          <div className="flex flex-col space-y-4 md:space-y-6">
+            {/* Header + Tagline on same line */}
+            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between">
+              <h2 className="text-left text-5xl font-bold md:text-6xl">
+                We are{' '}
+                <span className="font-[family-name:var(--font-instrument-serif)] font-normal italic">
+                  DPSTechies
+                </span>
+              </h2>
+              <p className="mt-2 font-[family-name:var(--font-vt)] text-sm text-white md:mt-0 md:text-base">
+                *masters of tech, apprentices in common sense*
+              </p>
+            </div>
+
+            {/* Description */}
+            <p className="max-w-2xl text-left text-base text-sm text-zinc-300">
+              We come together to <span className="font-medium text-white">innovate</span>,{' '}
+              <span className="font-medium text-white">collaborate</span>, and pretend we know what
+              we’re doing. Whether you’re obsessed with AI, code, robots, or just making things look
+              cool, this is the perfect place to overcommit, under-caffeinate, and accidentally
+              invent the future.
             </p>
           </div>
 
-          {/* Description */}
-          <p className="max-w-2xl text-left text-base text-sm text-zinc-300">
-            We come together to <span className="font-medium text-white">innovate</span>,{' '}
-            <span className="font-medium text-white">collaborate</span>, and pretend we know what
-            we’re doing. Whether you’re obsessed with AI, code, robots, or just making things look
-            cool, this is the perfect place to overcommit, under-caffeinate, and accidentally invent
-            the future.
-          </p>
-        </div>
-
-        <div className="grid gap-6 md:grid-cols-3">
-          {features.map((feature, idx) => (
-            <MagicCard
-              key={idx}
-              gradientFrom={feature.gradientFrom}
-              gradientTo={feature.gradientTo}
-              gradientColor="#262626"
-              gradientOpacity={0.8}
-              gradientSize={200}
-            >
-              <div
+          <div className="grid gap-6 md:grid-cols-3">
+            {features.map((feature, idx) => (
+              <MagicCard
                 key={idx}
-                className="flex h-full flex-col justify-between rounded-2xl p-6 shadow-md"
+                gradientFrom={feature.gradientFrom}
+                gradientTo={feature.gradientTo}
+                gradientColor="#262626"
+                gradientOpacity={0.8}
+                gradientSize={200}
               >
-                <div>
-                  <div>{feature.icon}</div>
-                  <h3 className="text-lg font-semibold">{feature.title}</h3>
-                  <p className="text-sm text-zinc-300">{feature.description}</p>
+                <div
+                  key={idx}
+                  className="flex h-full flex-col justify-between rounded-2xl p-6 shadow-md"
+                >
+                  <div>
+                    <div>{feature.icon}</div>
+                    <h3 className="text-lg font-semibold">{feature.title}</h3>
+                    <p className="text-sm text-zinc-300">{feature.description}</p>
+                  </div>
                 </div>
-              </div>
-            </MagicCard>
-          ))}
+              </MagicCard>
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 };
 
