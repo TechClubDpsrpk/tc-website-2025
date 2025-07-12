@@ -7,7 +7,7 @@ import Link from 'next/link';
 const navItems = [
   {
     title: 'Home',
-    href: '#home',
+    href: '/',
     subtitle: '(Back to Base)',
   },
   {
@@ -22,7 +22,7 @@ const navItems = [
   },
   {
     title: 'Gallery',
-    href: '#gallery',
+    href: '/gallery',
     subtitle: '(Pixels with a purpose)',
   },
   {

@@ -24,7 +24,7 @@ const Header = () => {
           zIndex: 30,
         }}
         side="top"
-        className="h-24"
+        className="h-18"
       />
       <div className="fixed top-0 right-0 left-0 z-50 flex items-center justify-between px-4 py-4 md:px-6">
         {/* Left Section: Logo + Text */}
