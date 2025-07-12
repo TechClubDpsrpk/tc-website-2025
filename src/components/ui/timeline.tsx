@@ -29,7 +29,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
 
   return (
     <div className="w-full bg-white font-sans md:px-10 dark:bg-black" ref={containerRef}>
-      <div className="mx-auto max-w-7xl px-4 py-12 md:px-8 lg:px-10">
+      <div className="mx-auto max-w-7xl px-4 py-12 md:px-6 lg:px-10">
         <h2 className="mb-4 max-w-4xl text-2xl font-bold text-black md:text-6xl dark:text-white">
           Our Legacy
         </h2>
@@ -46,13 +46,13 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
               <div className="absolute left-3 flex h-10 w-10 items-center justify-center rounded-full bg-white md:left-3 dark:bg-black">
                 <div className="h-4 w-4 rounded-full border border-neutral-300 bg-neutral-200 p-2 dark:border-neutral-700 dark:bg-neutral-800" />
               </div>
-              <h3 className="hidden text-xl font-bold text-neutral-500 md:block md:pl-20 md:text-5xl dark:text-neutral-500">
+              <h3 className="hidden font-[family-name:var(--font-space-mono)] text-xl font-bold text-neutral-500 md:block md:pl-20 md:text-5xl dark:text-neutral-500">
                 {item.title}
               </h3>
             </div>
 
             <div className="relative w-full pr-4 pl-20 md:pl-4">
-              <h3 className="mb-4 block text-left text-2xl font-bold text-neutral-500 md:hidden dark:text-neutral-500">
+              <h3 className="mb-4 block text-left font-[family-name:var(--font-space-mono)] text-2xl font-bold text-neutral-500 md:hidden dark:text-neutral-500">
                 {item.title}
               </h3>
               {item.content}{' '}
