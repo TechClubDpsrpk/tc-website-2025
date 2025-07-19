@@ -1,5 +1,6 @@
 import React from 'react';
 import { RetroGrid } from '../magicui/retro-grid';
+import { FlickeringGrid } from '../magicui/flickering-grid';
 
 const ContactForm = () => {
   return (
@@ -34,8 +35,20 @@ const ContactForm = () => {
         </div>
       </div>
 
-      <div className="-z-10">
+      <div className="-z-50 hidden">
         <RetroGrid opacity={0.6} />
+      </div>
+      <div className="-z-10">
+        <FlickeringGrid
+          className="relative inset-0 z-0 [mask-image:radial-gradient(450px_circle_at_center,white,transparent)]"
+          squareSize={4}
+          gridGap={6}
+          color="#FAC924"
+          maxOpacity={0.5}
+          flickerChance={0.1}
+          height={800}
+          width={1920}
+        />
       </div>
     </div>
   );
