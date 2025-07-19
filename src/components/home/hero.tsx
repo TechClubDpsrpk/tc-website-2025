@@ -9,13 +9,13 @@ import './hero/embla.css';
 const OPTIONS: EmblaOptionsType = { loop: true };
 const SLIDES = [
   {
-    image: 'https://picsum.photos/1920/1080?v=1',
-    text: 'We fix what we break.',
+    image: '/e2db6c.jpg',
+    text: 'Our Shiny New Server',
     button: 'Join Us',
   },
   {
-    image: 'https://picsum.photos/1920/1080?v=7',
-    text: 'Chaos meets code.',
+    image: '/mia.jpeg',
+    text: 'LOGIQUE 2025',
     button: 'Explore',
   },
   {

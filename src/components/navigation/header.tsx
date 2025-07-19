@@ -16,7 +16,7 @@ const Header = () => {
         // How much of the blur is falloff. 0 means no falloff, 100 means the entire blur is falloff. Default is 100.
         falloffPercentage={100}
         // The tint applied to the blur. This can be any valid CSS color. Default is transparent.
-        tint="rgba(0, 0, 0, 0.6)"
+        tint="rgba(0, 0, 0, 0.8)"
         // You can pass any div props to the component. Useful for positioning.
         style={{
           position: 'fixed',
@@ -29,7 +29,7 @@ const Header = () => {
       <div className="fixed top-0 right-0 left-0 z-50 flex items-center justify-between px-4 py-4 md:px-6">
         {/* Left Section: Logo + Text */}
         <Link href="/" className="flex items-center">
-          <Image src="/DPS_Logo.svg" alt="Logo" width={32} height={32} className="rounded-full" />
+          <Image src="/DPS_Logo.svg" alt="Logo" width={32} height={32} />
           <p className="hidden pl-4 font-bold lg:block">DPSRPK | Tech Club</p>
         </Link>
 

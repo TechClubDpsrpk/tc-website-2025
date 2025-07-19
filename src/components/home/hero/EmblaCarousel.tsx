@@ -115,7 +115,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
                   />
                   <div className="absolute h-full w-full text-white">
                     <div className="absolute top-4 left-4">
-                      <p className="pt-5 text-base font-semibold mix-blend-difference">
+                      <p className="pt-5 text-3xl font-bold text-yellow-300 md:text-5xl md:font-bold lg:text-7xl lg:font-extrabold">
                         {slide.text}
                       </p>
                       <a
