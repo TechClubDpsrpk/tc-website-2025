@@ -15,7 +15,7 @@ export default function ContactPage() {
 
   return (
     <section className="min bg-black px-6 py-24 font-mono text-green-400">
-      <div className="mx-auto max-w-2xl rounded-md border border-zinc-700 bg-black p-6 shadow-lg">
+      <div className="mx-auto max-w-2xl rounded-md border border-zinc-700 bg-zinc-900 p-6 shadow-lg">
         <div className="mb-6 flex gap-2">
           <div className="h-3 w-3 rounded-full bg-red-500"></div>
           <div className="h-3 w-3 rounded-full bg-yellow-500"></div>
@@ -29,7 +29,7 @@ export default function ContactPage() {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full border-none bg-black text-green-400 placeholder-green-600 outline-none"
+            className="w-full border-none bg-zinc-900 text-green-400 placeholder-green-600 outline-none"
             placeholder="your@email.com"
           />
 
@@ -45,7 +45,7 @@ export default function ContactPage() {
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
                 rows={5}
-                className="w-full border-none bg-black text-green-400 placeholder-green-600 outline-none"
+                className="w-full border-none bg-zinc-900 text-green-400 placeholder-green-600 outline-none"
                 placeholder="Type your message here..."
               />
             </motion.div>
