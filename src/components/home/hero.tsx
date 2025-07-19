@@ -9,6 +9,11 @@ import './hero/embla.css';
 const OPTIONS: EmblaOptionsType = { loop: true };
 const SLIDES = [
   {
+    image: 'https://picsum.photos/1920/1080?v=5',
+    text: 'Infinite bugs, infinite passion.',
+    button: 'Learn More',
+  },
+  {
     image: '/e2db6c.jpg',
     text: 'Our Shiny New Server',
     button: 'Join Us',
@@ -17,11 +22,6 @@ const SLIDES = [
     image: '/mia.jpeg',
     text: 'LOGIQUE 2025',
     button: 'Explore',
-  },
-  {
-    image: 'https://picsum.photos/1920/1080?v=5',
-    text: 'Infinite bugs, infinite passion.',
-    button: 'Learn More',
   },
 ];
 
