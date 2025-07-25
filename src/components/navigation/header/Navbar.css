@@ -21,7 +21,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  overflow:hidden;
   z-index: 1000;
 }
 
@@ -56,4 +55,23 @@
 .logo {
   height: 40px;
   width:50px;
+}
+
+/* Hide elements on mobile (below 768px) */
+.hide-on-mobile {
+  display: flex;
+}
+
+.show-on-mobile {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .hide-on-mobile {
+    display: none;
+  }
+
+  .show-on-mobile {
+    display: block;
+  }
 }
