@@ -33,9 +33,12 @@ const features = [
 ];
 
 const Intro = ({ className, ...props }: IntroProps) => {
-  const [currentTime, setCurrentTime] = useState(() =>
-    new Date().toLocaleString()
-  );
+  const [currentTime, setCurrentTime] = useState(() => new Date().toLocaleString());
+  const [displayText, setDisplayText] = useState('');
+  const [wordIndex, setWordIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  const words = ['solutions', 'reality', 'impact'];
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -44,6 +47,27 @@ const Intro = ({ className, ...props }: IntroProps) => {
 
     return () => clearInterval(interval);
   }, []);
+
+  useEffect(() => {
+    const currentWord = words[wordIndex];
+    const shouldDelete = isDeleting;
+
+    if (!shouldDelete && displayText === currentWord) {
+      setTimeout(() => setIsDeleting(true), 1500);
+    } else if (shouldDelete && displayText === '') {
+      setIsDeleting(false);
+      setWordIndex((prev) => (prev + 1) % words.length);
+    } else {
+      setTimeout(
+        () => {
+          setDisplayText((prev) =>
+            shouldDelete ? prev.slice(0, -1) : currentWord.slice(0, prev.length + 1)
+          );
+        },
+        shouldDelete ? 250 : 300
+      );
+    }
+  }, [displayText, wordIndex, isDeleting, words]);
 
   return (
     <>
@@ -60,21 +84,20 @@ const Intro = ({ className, ...props }: IntroProps) => {
       >
         <div className="mx-auto max-w-6xl space-y-10 md:px-6 lg:px-24">
           <div className="flex flex-col space-y-4 md:space-y-6">
-            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between">
-              <h2 className="text-5xl font-bold md:text-6xl">
-                We are{' '}
-                <span className="font-[family-name:var(--font-instrument-serif)] italic font-normal">
-                  DPSTechies
-                </span>
+            <div className="lg:items-center lg:justify-between">
+              <h2 className="text-5xl font-light md:text-6xl">
+                Where{' '}
+                <span className="font-[family-name:monospace] font-medium md:text-6xl">ideas</span>{' '}
+                turn into{' '}
               </h2>
-              <p className="mt-2 font-[family-name:var(--font-vt)] text-sm md:mt-0 md:text-base">
-                *masters of tech, apprentices in common sense*
-              </p>
+              <span className="font-[family-name:monospace] font-medium md:text-6xl">
+                {displayText}.
+              </span>
             </div>
 
             <p className="max-w-2xl text-sm text-zinc-300">
-              We come together to <span className="text-white font-medium">innovate</span>,{' '}
-              <span className="text-white font-medium">collaborate</span>, and pretend we know what
+              We come together to <span className="font-medium text-white">innovate</span>,{' '}
+              <span className="font-medium text-white">collaborate</span>, and pretend we know what
               we’re doing. Whether you’re obsessed with AI, code, robots, or just making things look
               cool, this is the perfect place to overcommit, under-caffeinate, and accidentally
               invent the future.
