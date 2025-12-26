@@ -1,47 +1,100 @@
 "use client";
-import Image from 'next/image';
-import MenuButtonWithOverlay from './header/menu';
-import Link from 'next/link';
-import React, { useState, useRef } from "react";
-import "./header/Navbar.css";
+
+import { usePathname } from "next/navigation";
+import Link from "next/link";
+import React, { useEffect, useState } from "react";
+import { Home, Megaphone, User, Image as ImageIcon, Mail } from "lucide-react";
 
 const Header = () => {
-  const navRef = useRef(null);
-  const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname() ?? "";
+  const [isLightMode, setIsLightMode] = useState(false);
+
+  const navLinks = [
+    { href: "/", icon: Home },
+    { href: "/announcements", label: "Announcements", icon: Megaphone },
+    { href: "/about", label: "About Us", icon: User },
+    { href: "/gallery", label: "Gallery", icon: ImageIcon },
+    { href: "/contact", label: "Contact Us", icon: Mail },
+  ];
+
+  useEffect(() => {
+    const sections = document.querySelectorAll("[data-navbar-theme]");
+
+    if (!sections.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const theme = entry.target.getAttribute("data-navbar-theme");
+            setIsLightMode(theme === "light");
+          }
+        });
+      },
+      {
+        threshold: 0.3,
+        rootMargin: "-100px 0px -60% 0px",
+      }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, [pathname]);
 
   return (
-    <nav className="liquid-navbar" ref={navRef}>
-            <div className="liquidGlass-effect"></div>
-        <div className="liquidGlass-tint"></div>
-        <div className="liquidGlass-shine"></div>
-      {/* LEFT LINKS - hidden on mobile */}
-      <div className="nav-left hide-on-mobile">
-        <Link href="/" onClick={() => setIsOpen(false)}>Home</Link>
-        {/* <Link href="/portfolio" onClick={() => setIsOpen(false)}>Portfolio</Link> */}
-        <Link href="/announcements" onClick={() => setIsOpen(false)}>Announcements</Link>
-        <Link href="/about" onClick={() => setIsOpen(false)}>About Us</Link>
-                {/* <Link href="/team" onClick={() => setIsOpen(false)}>Core Team</Link> */}
-        <Link href="/gallery" onClick={() => setIsOpen(false)}>Gallery</Link>
-        {/* <Link href="/legacy" onClick={() => setIsOpen(false)}>Legacy</Link> */}
-        <Link href="/contact" onClick={() => setIsOpen(false)}>Contact Us</Link>
-      </div>
+    <header className="fixed top-8 left-1/2 -translate-x-1/2 z-50">
+      <nav
+        className={`px-2 py-2 rounded-full backdrop-blur-xl border shadow-xl transition-all duration-500
+        ${
+          isLightMode
+            ? "bg-white/90 border-gray-200/50"
+            : "bg-gray-900/50 border-gray-700/50"
+        }`}
+      >
+        <div className="flex items-center gap-1">
+          {navLinks.map((link) => {
+            const isActive =
+              pathname === link.href ||
+              (link.href !== "/" && pathname.startsWith(link.href));
+            const Icon = link.icon;
+            const isHome = link.href === "/";
 
-      {/* CENTER LOGO */}
-      {/* <div className="nav-center">
-        <Image src="/tc-logo.png" alt="Logo" width={100} height={100} className="logo" />
-      </div> */}
+            return (
+              <React.Fragment key={link.href}>
+                <Link
+                  href={link.href}
+                  className={`flex items-center gap-2 text-sm font-medium transition-all duration-300 whitespace-nowrap
+                  ${
+                    isHome ? "px-2 py-2 rounded-full" : "px-5 py-2 rounded-full"
+                  }
+                  ${
+                    isActive
+                      ? "bg-[#C9A227] text-black shadow-lg shadow-[#C9A227]/20 scale-105"
+                      : isLightMode
+                      ? "text-gray-700 hover:text-gray-900 hover:bg-gray-100"
+                      : "text-gray-300 hover:text-white hover:bg-gray-800/50"
+                  }`}
+                >
+                  <Icon size={18} />
+                  {!isHome && (
+                    <span className="hidden sm:inline">{link.label}</span>
+                  )}
+                </Link>
 
-      {/* RIGHT LINKS - hidden on mobile */}
-      {/* <div className={`nav-right hide-on-mobile ${isOpen ? "open" : ""}`}>
-
-      </div> */}
-
-      {/* MENU BUTTON - only on mobile */}
-      {/* <div className="show-on-mobile">
-        <MenuButtonWithOverlay />
-      </div> */}
-
-    </nav>
+                {/* Divider after Home */}
+                {isHome && (
+                  <div
+                    className={`h-8 w-px mx-1 transition-colors duration-300 ${
+                      isLightMode ? "bg-gray-300" : "bg-gray-600"
+                    }`}
+                  />
+                )}
+              </React.Fragment>
+            );
+          })}
+        </div>
+      </nav>
+    </header>
   );
 };
 
