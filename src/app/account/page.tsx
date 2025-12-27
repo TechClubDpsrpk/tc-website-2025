@@ -14,8 +14,7 @@ import {
   // CheckCircle,
   // AlertTriangle,
   // Camera,
-  User as
-  Eye,
+  User as Eye,
   EyeOff,
 } from 'lucide-react';
 
@@ -38,7 +37,11 @@ export default function AccountPage() {
 
   const [formData, setFormData] = useState({ name: '' });
   const [passwordData, setPasswordData] = useState({ current: '', new: '', confirm: '' });
-  const [showPasswords, setShowPasswords] = useState({ current: false, new: false, confirm: false });
+  const [showPasswords, setShowPasswords] = useState({
+    current: false,
+    new: false,
+    confirm: false,
+  });
   const [uploadingAvatar, setUploadingAvatar] = useState(false);
   const [resendingEmail, setResendingEmail] = useState(false);
 
@@ -154,10 +157,8 @@ export default function AccountPage() {
     const file = e.target.files?.[0];
     if (!file) return;
 
-    if (!file.type.startsWith('image/'))
-      return showMsg('error', 'Please upload an image file');
-    if (file.size > 5 * 1024 * 1024)
-      return showMsg('error', 'Image must be less than 5MB');
+    if (!file.type.startsWith('image/')) return showMsg('error', 'Please upload an image file');
+    if (file.size > 5 * 1024 * 1024) return showMsg('error', 'Image must be less than 5MB');
 
     setUploadingAvatar(true);
     try {
@@ -190,8 +191,7 @@ export default function AccountPage() {
         credentials: 'include',
       });
 
-      if (response.ok)
-        showMsg('success', 'Verification email sent. Check your inbox!');
+      if (response.ok) showMsg('success', 'Verification email sent. Check your inbox!');
       else showMsg('error', 'Failed to send verification email');
     } catch {
       showMsg('error', 'An error occurred');

@@ -58,7 +58,7 @@ const Header = () => {
           // Show icons only when scrolled down more than 100px
           if (currentScrollY > 100 && currentScrollY > lastScrollY) {
             setIsScrolled(true);
-          } 
+          }
           // Show labels when scrolling up or near top
           else if (currentScrollY < lastScrollY || currentScrollY < 50) {
             setIsScrolled(false);
@@ -72,8 +72,8 @@ const Header = () => {
       }
     };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   useEffect(() => {
@@ -144,27 +144,23 @@ const Header = () => {
                 ) : (
                   <Link
                     href={link.href}
-                    className={`group flex items-center text-sm font-medium whitespace-nowrap rounded-full overflow-hidden
-                    transition-all duration-500 ease-in-out
-                    ${isScrolled ? "px-2 py-2 gap-0" : "px-5 py-2 gap-2"}
-                    ${
+                    className={`group flex items-center overflow-hidden rounded-full text-sm font-medium whitespace-nowrap transition-all duration-500 ease-in-out ${isScrolled ? 'gap-0 px-2 py-2' : 'gap-2 px-5 py-2'} ${
                       isActive
                         ? 'scale-105 bg-[#C9A227] text-black shadow-lg shadow-[#C9A227]/20'
                         : isLightMode
-                        ? "text-gray-700 hover:text-gray-900 hover:bg-gray-100"
-                        : "text-gray-300 hover:text-white hover:bg-gray-800/50"
+                          ? 'text-gray-700 hover:bg-gray-100 hover:text-gray-900'
+                          : 'text-gray-300 hover:bg-gray-800/50 hover:text-white'
                     }`}
                   >
                     {link.icon && <link.icon size={18} className="flex-shrink-0" />}
-                    <span 
-                      className={`hidden sm:inline whitespace-nowrap transition-all duration-500 ease-in-out
-                      ${
-                        isScrolled 
-                          ? "max-w-0 opacity-0 ml-0 group-hover:max-w-xs group-hover:opacity-100 group-hover:ml-0" 
-                          : "max-w-xs opacity-100 ml-0"
+                    <span
+                      className={`hidden whitespace-nowrap transition-all duration-500 ease-in-out sm:inline ${
+                        isScrolled
+                          ? 'ml-0 max-w-0 opacity-0 group-hover:ml-0 group-hover:max-w-xs group-hover:opacity-100'
+                          : 'ml-0 max-w-xs opacity-100'
                       }`}
                       style={{
-                        transitionProperty: "max-width, opacity, margin-left"
+                        transitionProperty: 'max-width, opacity, margin-left',
                       }}
                     >
                       {link.label}

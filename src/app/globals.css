@@ -159,13 +159,9 @@
   }
   body {
     @apply bg-background text-foreground;
-      margin: 0;
-  padding: 0;
-  background: radial-gradient(
-    circle at top center,
-    rgb(71, 71, 21) 0%,
-    rgba(0, 0, 0, 1) 20%
-  );
+    margin: 0;
+    padding: 0;
+    background: radial-gradient(circle at top center, rgb(71, 71, 21) 0%, rgba(0, 0, 0, 1) 20%);
   }
 }
 
@@ -178,7 +174,9 @@
   overflow: hidden;
   cursor: pointer;
 
-  box-shadow: 0 6px 6px rgba(0, 0, 0, 0.2), 0 0 20px rgba(0, 0, 0, 0.1);
+  box-shadow:
+    0 6px 6px rgba(0, 0, 0, 0.2),
+    0 0 20px rgba(0, 0, 0, 0.1);
 
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 2.2);
 }
@@ -194,7 +192,7 @@
 }
 .liquidGlass-tint {
   z-index: -1;
-    border-radius: 55px;
+  border-radius: 55px;
   position: absolute;
   inset: 0;
   background: rgba(31, 29, 1, 0.116);
@@ -205,16 +203,14 @@
   inset: 0;
   border-radius: 55px;
   z-index: 2;
-box-shadow: 0 -30px 40px -20px rgba(94, 95, 5, 0.15) inset;
+  box-shadow: 0 -30px 40px -20px rgba(94, 95, 5, 0.15) inset;
 
-
-    border-top: 0.7px solid rgba(255, 255, 255, 0.356); /* very light top border */
+  border-top: 0.7px solid rgba(255, 255, 255, 0.356); /* very light top border */
   border-bottom: 0.1px solid rgba(255, 255, 255, 0.3);
 }
 
-
 .liquidGlass-shine::before {
-  content: "";
+  content: '';
   position: absolute;
   top: 0px;
   left: 0px;
@@ -231,24 +227,23 @@ box-shadow: 0 -30px 40px -20px rgba(94, 95, 5, 0.15) inset;
   /* fade stops inward from top-left */
   mask-image: radial-gradient(
     farthest-corner at top left,
-    rgba(0,0,0,1) 0px,
-    rgba(0,0,0,1) 4px,
-    rgba(0,0,0,0) 20px
+    rgba(0, 0, 0, 1) 0px,
+    rgba(0, 0, 0, 1) 4px,
+    rgba(0, 0, 0, 0) 20px
   );
   -webkit-mask-image: radial-gradient(
     farthest-corner at top left,
-    rgba(0,0,0,1) 0px,
-    rgba(0,0,0,1) 4px,
-    rgba(0,0,0,0) 20px
+    rgba(0, 0, 0, 1) 0px,
+    rgba(0, 0, 0, 1) 4px,
+    rgba(0, 0, 0, 0) 20px
   );
 
   /* clip so it doesn’t bleed beyond edge */
   clip-path: inset(0 5px 0 0 round 55px 0 0 0);
 }
 
-
 .liquidGlass-shine::after {
-  content: "";
+  content: '';
   position: absolute;
   bottom: 0px;
   right: 0px;
@@ -265,29 +260,24 @@ box-shadow: 0 -30px 40px -20px rgba(94, 95, 5, 0.15) inset;
   /* fade stops inward from bottom-right */
   mask-image: radial-gradient(
     farthest-corner at bottom right,
-    rgba(0,0,0,1) 0px,
-    rgba(0,0,0,1) 4px,
-    rgba(0,0,0,0) 20px
+    rgba(0, 0, 0, 1) 0px,
+    rgba(0, 0, 0, 1) 4px,
+    rgba(0, 0, 0, 0) 20px
   );
   -webkit-mask-image: radial-gradient(
     farthest-corner at bottom right,
-    rgba(0,0,0,1) 0px,
-    rgba(0,0,0,1) 4px,
-    rgba(0,0,0,0) 20px
+    rgba(0, 0, 0, 1) 0px,
+    rgba(0, 0, 0, 1) 4px,
+    rgba(0, 0, 0, 0) 20px
   );
 
   /* clip to prevent bleed */
   clip-path: inset(0 0 0 5px round 0 0 55px 0);
 }
 
-
-
-
-
 .liquidGlass-text {
   z-index: 3;
   font-size: 2rem;
-  font-family: "DM Sans", sans-serif;
+  font-family: 'DM Sans', sans-serif;
   color: white;
 }
-
