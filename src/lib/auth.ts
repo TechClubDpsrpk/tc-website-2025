@@ -46,23 +46,44 @@ export async function getCurrentUser() {
 }
 
 export async function uploadAvatar(userId: string, file: File) {
-  const { createClient } = await import('@supabase/supabase-js');
-  
-  const supabase = createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-  );
+  try {
+    const { createClient } = await import('@supabase/supabase-js');
+    
+    const supabase = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+    );
 
-  const fileName = `${userId}/${Date.now()}-${file.name}`;
-  const buffer = await file.arrayBuffer();
+    const fileExt = file.name.split('.').pop();
+    const fileName = `${userId}/avatar.${fileExt}`;
 
-  const { error: uploadError } = await supabase.storage
-    .from('avatars')
-    .upload(fileName, buffer, { upsert: true });
+    // Delete old avatar if exists
+    await supabase.storage
+      .from('avatars')
+      .remove([fileName])
+      .catch(() => {});
 
-  if (uploadError) throw uploadError;
+    // Upload new avatar
+    const { error: uploadError, data } = await supabase.storage
+      .from('avatars')
+      .upload(fileName, file, { 
+        upsert: true,
+        contentType: file.type
+      });
 
-  const { data } = supabase.storage.from('avatars').getPublicUrl(fileName);
+    if (uploadError) {
+      console.error('Upload error:', uploadError);
+      throw new Error('Upload failed: ' + uploadError.message);
+    }
 
-  return data.publicUrl;
+    // Get public URL
+    const { data: urlData } = supabase.storage
+      .from('avatars')
+      .getPublicUrl(fileName);
+
+    return urlData.publicUrl;
+  } catch (error) {
+    console.error('Avatar upload error:', error);
+    throw error;
+  }
 }
