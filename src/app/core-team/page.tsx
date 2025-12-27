@@ -95,12 +95,12 @@ const FourWaySplit = () => (
     {/* Vertical line coming down */}
     <div className="absolute top-0 left-1/2 h-8 w-0.5 -translate-x-1/2 bg-yellow-400" />
     {/* Horizontal line spanning all four positions */}
-    <div className="absolute top-8 right-0 left-0 h-0.5 bg-yellow-400" />
+    <div className="absolute top-8 right-[70px] left-[78px] h-0.5 bg-yellow-400" />
     {/* Four vertical lines going down */}
     <div className="absolute top-8 left-[12.5%] h-8 w-0.5 bg-yellow-400" />
     <div className="absolute top-8 left-[37.5%] h-8 w-0.5 bg-yellow-400" />
-    <div className="absolute top-8 left-[62.5%] h-8 w-0.5 bg-yellow-400" />
-    <div className="absolute top-8 left-[87.5%] h-8 w-0.5 bg-yellow-400" />
+    <div className="absolute top-8 left-[62%] h-8 w-0.5 bg-yellow-400" />
+    <div className="absolute top-8 left-[88.5%] h-8 w-0.5 bg-yellow-400" />
   </div>
 );
 
@@ -157,11 +157,11 @@ export default function TechClubTeamsPage() {
                 {/* Offstage Executives with T-junction */}
                 <div className="relative h-16 w-full">
                   {/* Horizontal line for two executives */}
-                  <div className="absolute top-0 right-1/4 left-1/4 h-0.5 bg-yellow-400" />
+                  <div className="absolute top-0 right-[202px] left-[200px] h-0.5 bg-yellow-400" />
                   {/* Left executive line */}
-                  <div className="absolute top-0 left-1/4 h-16 w-0.5 bg-yellow-400" />
+                  <div className="absolute top-0 left-[200px] h-16 w-0.5 bg-yellow-400" />
                   {/* Right executive line */}
-                  <div className="absolute top-0 right-1/4 h-16 w-0.5 bg-yellow-400" />
+                  <div className="absolute top-0 right-[202px] h-16 w-0.5 bg-yellow-400" />
                 </div>
 
                 <div className="flex w-full justify-center gap-24">
@@ -171,7 +171,7 @@ export default function TechClubTeamsPage() {
                         OFFSTAGE EXECUTIVE
                       </p>
                     </div>
-                    <VerticalLine height="h-8" />
+                    <VerticalLine height="h-6" />
                     <MemberCard member={teamStructure.offstageExecutives[0]} />
                   </div>
 
