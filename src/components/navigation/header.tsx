@@ -139,7 +139,13 @@ const Header = () => {
                           : 'hover:bg-gray-800/50'
                     }`}
                   >
-                    <Image src="/tc-logo.png" alt="Logo" width={20} height={20} priority />
+                    <Image
+                      src={isActive ? '/tc-logo_active.png' : '/tc-logo.png'}
+                      alt="Logo"
+                      width={20}
+                      height={20}
+                      priority
+                    />
                   </Link>
                 ) : (
                   <Link
